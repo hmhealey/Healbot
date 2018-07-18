@@ -2026,7 +2026,7 @@ function HealBot_OnEvent_VariablesLoaded(self)
     HealBot_Data["PRACE_EN"]=pRaceEN
     HealBot_Data["PNAME"]=UnitName("player")
     HealBot_Data["PLEVEL"]=UnitLevel("player")
-    RegisterAddonMessagePrefix("HealBot")
+    C_ChatInfo.RegisterAddonMessagePrefix("HealBot")
     HealBot_Options_InitBuffClassList()
     HealBot_setOptions_Timer(5)
     HealBot_Vers[HealBot_Data["PNAME"]]=HEALBOT_VERSION
