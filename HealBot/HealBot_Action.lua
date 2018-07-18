@@ -4253,7 +4253,6 @@ function HealBot_MountsPets_InitUse()
 end
 
 function HealBot_MountsPets_InitMount()
-    SetMapToCurrentZone()
     for z,_ in pairs(HealBot_GMount) do
         HealBot_GMount[z]=nil;
     end

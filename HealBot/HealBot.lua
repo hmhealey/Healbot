@@ -1386,10 +1386,7 @@ function HealBot_OnUpdate(self)
                         if GetTime()>HealBot_luVars["hbInsNameCheck"] then
                             HealBot_Options_Timer[7950]=nil
                             HealBot_luVars["hbInsNameCheck"]=nil
-                            local tmpAreaId = GetCurrentMapAreaID()
-                            SetMapToCurrentZone()
-                            local mapAreaID = GetCurrentMapAreaID()
-                            SetMapByID(tmpAreaId)
+                            local mapAreaID = C_Map.GetBestMapForUnit("player")
                             HealBot_setOptions_Timer(30)
                             local y,z = IsInInstance()
                             local mapName=HEALBOT_WORD_OUTSIDE
@@ -1596,10 +1593,7 @@ function HealBot_OnUpdate(self)
                 HealBot_IC_PartyMembersChanged()
             elseif HealBot_luVars["mapUpdate"] and HealBot_luVars["mapUpdate"]<GetTime() then
                 HealBot_luVars["mapUpdate"]=nil
-                local tmpAreaId = GetCurrentMapAreaID()
-                SetMapToCurrentZone()
-                local mapAreaID = GetCurrentMapAreaID()
-                SetMapByID(tmpAreaId)
+                local mapAreaID = C_Map.GetBestMapForUnit("player")
                 HealBot_Data["MAPID"]=mapAreaID or 0
                 local difficultyID = GetDungeonDifficultyID()
                 if HealBot_Data["MAPID"]==930 and difficultyID>1 then
