@@ -3099,7 +3099,7 @@ function HealBot_HasUnitBuff(buffName, unit, casterUnitID)
     if UnitExists(unit) then
         local k = 1
         while true do
-            local x,_,_,_,_,_,expirationTime, caster,_,_,spellID = UnitAura(unit, k, "HELPFUL"); 
+            local x,_,_,_,_,expirationTime, caster,_,_,spellID = UnitAura(unit, k, "HELPFUL"); 
             if x then
                 if casterUnitID then
                     if x==buffName and casterUnitID==(caster or "0") and not hbExcludeSpells[spellID] then
@@ -3147,7 +3147,7 @@ function HealBot_HasMyBuffs(button)
         HealBot_luVars["hasPWS"]=nil
         if not UnitIsFriend("player",xUnit) then
             while true do
-                local bName,_,iTexture,bCount,_,_,expirationTime, caster,_,_,spellID = UnitAura(xUnit, k, "HARMFUL"); 
+                local bName,iTexture,bCount,_,_,expirationTime, caster,_,_,spellID = UnitAura(xUnit, k, "HARMFUL"); 
                 if bName and caster and caster=="player" and expirationTime then
                     if not hbExcludeSpells[spellID] then 
                         if (expirationTime or 0)==0 then expirationTime=hbNoEndTime end
@@ -3160,7 +3160,7 @@ function HealBot_HasMyBuffs(button)
             end
         else
             while true do
-                local bName,_,iTexture,bCount,_,_,expirationTime, caster,_,_,spellID = UnitAura(xUnit, k, "HELPFUL");
+                local bName,iTexture,bCount,_,_,expirationTime, caster,_,_,spellID = UnitAura(xUnit, k, "HELPFUL");
                 local _, uClassEN = UnitClass(xUnit);
                 local uClassTrim = strsub(uClassEN or "XXXX",1,4)
                 if not caster then caster=HEALBOT_WORDS_UNKNOWN end
@@ -3735,7 +3735,7 @@ function HealBot_CheckUnitBuffs(button)
     end
 
     while true do
-        local bName,_,_,_,_,_,w,_,_,_, spellID, canApplyAura = UnitAura(xUnit,y,"HELPFUL") 
+        local bName,_,_,_,_,w,_,_,_, spellID, canApplyAura = UnitAura(xUnit,y,"HELPFUL") 
         if bName then
             y = y + 1;
             if (HealBot_BuffNameTypes[bName]) then
