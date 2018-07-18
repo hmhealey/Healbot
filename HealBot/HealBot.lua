@@ -943,8 +943,8 @@ end
 function HealBot_UnitMana(unit)
     local x,y=nil,nil
     if unit and UnitExists(unit) and UnitPowerType(unit)==0 then
-        x=UnitMana(unit)
-        y=UnitManaMax(unit)
+        x=UnitPower(unit, SPELL_POWER_MANA)
+        y=UnitPowerMax(unit, SPELL_POWER_MANA)
     end
     return x,y;
 end
@@ -1866,7 +1866,7 @@ function HealBot_OnEvent(self, event, ...)
         HealBot_OnEvent_PlayerRegenEnabled(self);
     elseif (event=="UNIT_NAME_UPDATE") then
         HealBot_OnEvent_UnitNameUpdate(self,arg1)
-    elseif (event=="UNIT_POWER") then
+    elseif (event=="UNIT_POWER_UPDATE") then
         HealBot_OnEvent_UnitMana(self,arg1,arg2);
     elseif (event=="UNIT_MAXPOWER") then 
         HealBot_OnEvent_UnitMaxMana(self,arg1,arg2);
@@ -2392,7 +2392,6 @@ function HealBot_Register_Events()
         HealBot:RegisterEvent("UNIT_EXITING_VEHICLE");
         HealBot:RegisterEvent("UNIT_HEALTH");
         HealBot:RegisterEvent("UNIT_MAXHEALTH");
-        HealBot:RegisterEvent("UNIT_MAXMANA")
         local regPower=false
         for j=1,10 do
             if Healbot_Config_Skins.HealBar[Healbot_Config_Skins.Current_Skin][j]["POWERSIZE"]>0 then 
@@ -2494,7 +2493,7 @@ function HealBot_UnRegister_ReadyCheck()
 end
 
 function HealBot_Register_Mana()
-    HealBot:RegisterEvent("UNIT_POWER")
+    HealBot:RegisterEvent("UNIT_POWER_UPDATE")
     HealBot:RegisterEvent("UNIT_MAXPOWER")
     for xUnit,_ in pairs(HealBot_Unit_Button) do
         HealBot_CheckPower(xUnit)
@@ -2502,7 +2501,7 @@ function HealBot_Register_Mana()
 end
 
 function HealBot_UnRegister_Mana()
-    HealBot:UnregisterEvent("UNIT_POWER")
+    HealBot:UnregisterEvent("UNIT_POWER_UPDATE")
     HealBot:UnregisterEvent("UNIT_MAXPOWER")
 end
 

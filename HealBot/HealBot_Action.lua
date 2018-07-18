@@ -974,12 +974,12 @@ function HealBot_Action_SetBar3Value(button, sName)
             end
         end
         if Healbot_Config_Skins.HealBar[Healbot_Config_Skins.Current_Skin][button.frame]["POWERSIZE"]==0 then return end
-        if UnitManaMax(button.unit)==0 then
+        if UnitPower(button.unit, SPELL_POWER_MANA)==0 then
             x=100
         else
-            x=UnitManaMax(button.unit)
+            x=UnitPowerMax(button.unit, SPELL_POWER_MANA)
         end
-        local y=floor((UnitMana(button.unit)/x)*100)
+        local y=floor((UnitPower(button.unit, SPELL_POWER_MANA)/x)*100)
         local hcr,hcg,hcb=HealBot_Action_GetManaBarCol(button.unit)
         HealBot_Action_SetBar3ColAlpha(barName, y, hcr, hcg, hcb, HealBot_UnitBarsRange["3a"][button.unit] or Healbot_Config_Skins.BarCol[Healbot_Config_Skins.Current_Skin][button.frame]["DISA"])
     end
