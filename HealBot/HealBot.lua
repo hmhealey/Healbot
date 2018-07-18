@@ -1391,7 +1391,7 @@ function HealBot_OnUpdate(self)
                             local y,z = IsInInstance()
                             local mapName=HEALBOT_WORD_OUTSIDE
                             if mapAreaID and mapAreaID>0 then
-                                mapName=GetMapNameByID(mapAreaID)
+                                mapName=C_Map.GetMapInfo(mapAreaID).name
                             elseif z and z=="arena" then 
                                 mapName="Arena"
                             end
